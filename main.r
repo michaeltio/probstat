@@ -109,3 +109,26 @@ print(summary(linear_model))
 # t test
 t_test_result <- t.test(hair_fall, stress_level, paired = TRUE)
 print(t_test_result)
+
+
+# histogram
+hist(stress_level, col = "skyblue", main = "Stress Level Histogram", xlab = "Stress Level (0-99)")
+hist(hair_fall, col = "#6f9bac", main = "Hair Fall Histogram", xlab = "Hair Fall")
+# dot plot
+dotchart(stress_level, pch = 19, col = "salmon", main = "Dot Plot Example", xlab = "Values")
+dotchart(hair_fall, pch = 19, col = "salmon", main = "Dot Plot Example", xlab = "Values")
+# box plot
+boxplot(hair_fall ~ stress_level,
+    col = c("lightblue", "lightgreen", "lightcoral"),
+    main = "Box Plot: Hair Loss vs Stress Level",
+    xlab = "Stress Level",
+    ylab = "Hair Loss"
+)
+# scatter plot
+plot(stress_level, hair_fall,
+    col = "navy",
+    pch = 19,
+    main = "Scatter Plot: Hair Loss vs Stress Level",
+    xlab = "Stress Level",
+    ylab = "Hair Loss"
+)
