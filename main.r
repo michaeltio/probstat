@@ -19,7 +19,7 @@ median_fall <- median(hair_fall)
 cat("Stress Level:", median_stress, "\n")
 cat("Hair Fall:", median_fall, "\n\n")
 # Modus
-getmode <- function(v) {
+get_mode <- function(v) {
     uniqv <- unique(v)
     uniqv[which.max(tabulate(match(v, uniqv)))]
 }
@@ -82,3 +82,30 @@ cat("Kovarians:", covariance_value, "\n\n")
 cat("Kovarians:\n")
 correlation_value <- cor(stress_level, hair_fall)
 cat("Korelasi:", correlation_value, "\n\n")
+
+# Shapiro Wilk
+cat("Normalitas (Shapiro Wilk)\n")
+shapiro_stress <- shapiro.test(stress_level)
+shapiro_fall <- shapiro.test(hair_fall)
+cat("Shapiro Stress Level Result:", shapiro_stress$p.value, "\n")
+cat("Shapiro Hair Fall Result:", shapiro_fall$p.value, "\n\n")
+
+if (shapiro_stress$p.value < 0.05) {
+    cat("Shapiro Stress Level is not normally distributed (p-value =", shapiro_stress$p.value, ")\n")
+} else {
+    cat("Shapiro Stress Level is normally distributed (p-value =", shapiro_stress$p.value, ")\n")
+}
+
+if (shapiro_fall$p.value < 0.05) {
+    cat("Shapiro Hair Fall is not normally distributed (p-value =", shapiro_stress$p.value, ")\n")
+} else {
+    cat("Shapiro Hair Fall is normally distributed (p-value =", shapiro_stress$p.value, ")\n")
+}
+
+# regresi linear
+linear_model <- lm(hair_fall ~ stress_level, data = data)
+print(summary(linear_model))
+
+# t test
+t_test_result <- t.test(hair_fall, stress_level, paired = TRUE)
+print(t_test_result)
